@@ -4,7 +4,7 @@ Created on Fri May 29 17:08:02 2020
 
 @author: Akshat
 
-Gets 5 day weather forecast for Colorado Springs.
+Gets 5 day weather forecast temperature max and min plots for Colorado Springs.
 """
 from api_key import api_key
 from datetime import date
@@ -50,7 +50,7 @@ def get_temp_plot(weather_data_df, forecast_date):
         date, hour, temp_min_F, temp_max_F.
     forecast_date: date string formatted to YYYY-MM-DD
     """
-    fig = plt.figure()
+    fig = plt.figure(figsize=(5,5), dpi=100)
     day_df = weather_data_df[weather_data_df['date'] == forecast_date]
     plt.plot(range(day_df.shape[0]),day_df[['temp_min_F']].values, figure=fig)
     plt.plot(range(day_df.shape[0]),day_df[['temp_max_F']].values, figure=fig)
@@ -69,9 +69,8 @@ def main():
     temp_plots = []
     for forecast_date in forecast_dates:
         temp_plots.append(get_temp_plot(weather_data_df, forecast_dates[1]))
-    # print(weather_data_df)
-    print(temp_plots)
     
+    return temp_plots
     
 
     
