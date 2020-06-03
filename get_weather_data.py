@@ -55,6 +55,9 @@ def get_temp_plot(weather_data_df, forecast_date):
     plt.plot(range(day_df.shape[0]),day_df[['temp_min_F']].values, figure=fig)
     plt.plot(range(day_df.shape[0]),day_df[['temp_max_F']].values, figure=fig)
     plt.xticks(ticks = range(day_df.shape[0]),labels=day_df['hour'].values, rotation=45, ha='right', figure=fig)
+    plt.xlabel(forecast_date)
+    plt.ylabel('Temp (F)')
+    plt.tight_layout()
     return fig
 
 def main():
@@ -68,7 +71,7 @@ def main():
     weather_data_df['temp_max_F'] = (weather_data_df['temp_max_K'] - 273.15) * 1.8 + 32
     temp_plots = []
     for forecast_date in forecast_dates:
-        temp_plots.append(get_temp_plot(weather_data_df, forecast_dates[1]))
+        temp_plots.append(get_temp_plot(weather_data_df, forecast_date))
     
     return temp_plots
     
